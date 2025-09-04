@@ -1,0 +1,22 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-FirstApplication<first>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.berkepite.first.FirstApplication",
+            "projectName": "first",
+            "args": "--spring.profiles.active=dev"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-FirstGatewayApplication<first-gateway>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.berkepite.first_gateway.FirstGatewayApplication",
+            "projectName": "first-gateway",
+            "args": "--spring.profiles.active=dev",
+        }
+    ]
+}

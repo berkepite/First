@@ -1,0 +1,40 @@
+pipeline {
+    agent any
+
+    tools {
+        maven 'Maven 3.9.11'
+    }
+
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building...'
+                maven 'clean install'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing...'
+                maven 'test'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying...'
+                maven 'deploy'
+            }
+        }
+    }
+
+    post {
+        always {
+            echo 'This will always run after the stages.'
+        }
+        success {
+            echo 'This will run only if the pipeline succeeds.'
+        }
+        failure {
+            echo 'This will run only if the pipeline fails.'
+        }
+    }
+}

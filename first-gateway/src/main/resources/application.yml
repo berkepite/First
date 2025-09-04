@@ -1,0 +1,2 @@
+spring.application.name: first-gateway
+server.port: 8088
