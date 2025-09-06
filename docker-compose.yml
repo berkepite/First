@@ -1,4 +1,4 @@
-name: FirstProject
+name: first
 services:
   backend1:
     image: first-backend:latest
@@ -53,7 +53,6 @@ services:
   postgres:
     image: postgres:17-trixie
     container_name: postgres
-    restart: always
     shm_size: 128mb
     environment:
       POSTGRES_DB: first_test

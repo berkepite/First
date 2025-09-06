@@ -16,7 +16,7 @@
             "cwd": "${workspaceFolder}",
             "mainClass": "com.berkepite.first_gateway.FirstGatewayApplication",
             "projectName": "first-gateway",
-            "args": "--spring.profiles.active=dev",
+            "args": "--spring.profiles.active=dev"
         }
     ]
 }

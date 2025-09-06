@@ -1,2 +1,32 @@
-spring.application.name: first-gateway
-server.port: 8088
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: todo_route
+              uri: http://localhost:8080  # The base URI of the backend service
+              predicates:
+                - Path=/home
+              filters:
+                - RewritePath=/home, /api/v1/todo/get
+                - AddResponseHeader=X-Gateway-Request, True
+                - name: CircuitBreaker
+                  args:
+                    name: my_todo_circuitbreaker
+                    fallbackUri: forward:/fallback-todo
+            - id: test_cb_route
+              uri: https://httpbin.org/  # The base URI of the backend service
+              predicates:
+                - Path=/test_cb/**
+              filters:
+                - RewritePath=/test_cb/?(?<delay>.*), /delay/$\{delay}
+                - AddResponseHeader=X-Gateway-Request, True
+                - name: CircuitBreaker
+                  args:
+                    name: my_test_cb_circuitbreaker
+                    fallbackUri: forward:/fallback-todo
+server:
+  port: 8088
