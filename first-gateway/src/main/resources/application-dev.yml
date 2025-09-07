@@ -1,17 +1,16 @@
 spring:
   application:
-    name: api-gateway
+    name: first-gateway
   cloud:
     gateway:
       server:
         webflux:
           routes:
             - id: todo_route
-              uri: http://localhost:8080  # The base URI of the backend service
+              uri: lb://first-backend  # The base URI of the backend service
               predicates:
-                - Path=/home
+                - Path=/**
               filters:
-                - RewritePath=/home, /api/v1/todo/get
                 - AddResponseHeader=X-Gateway-Request, True
                 - name: CircuitBreaker
                   args:
@@ -28,5 +27,11 @@ spring:
                   args:
                     name: my_test_cb_circuitbreaker
                     fallbackUri: forward:/fallback-todo
+  
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
 server:
   port: 8088

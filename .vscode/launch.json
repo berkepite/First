@@ -2,21 +2,30 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Spring Boot-FirstApplication<first>",
+            "name": "Spring Boot-FirstBackendApplication<first-backend>",
             "request": "launch",
             "cwd": "${workspaceFolder}",
-            "mainClass": "com.berkepite.first.FirstApplication",
-            "projectName": "first",
-            "args": "--spring.profiles.active=dev"
+            "mainClass": "com.berkepite.first.backend.FirstBackendApplication",
+            "projectName": "first-backend",
+            "args": "--spring.profiles.active=dev",
         },
         {
             "type": "java",
             "name": "Spring Boot-FirstGatewayApplication<first-gateway>",
             "request": "launch",
             "cwd": "${workspaceFolder}",
-            "mainClass": "com.berkepite.first_gateway.FirstGatewayApplication",
+            "mainClass": "com.berkepite.first.gateway.FirstGatewayApplication",
             "projectName": "first-gateway",
-            "args": "--spring.profiles.active=dev"
+            "args": "--spring.profiles.active=dev",
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-EurekaServerApplication<eureka-server>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.berkepite.first.eureka_server.EurekaServerApplication",
+            "projectName": "eureka-server",
+            "args": "--spring.profiles.active=dev",
         }
     ]
 }

@@ -1,0 +1,54 @@
+spring:
+  application:
+    name: first-backend
+  data:
+    jdbc:
+      dialect: postgresql
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  datasource:
+    url: jdbc:postgresql://localhost:5555/first_test
+    driverClassName: org.postgresql.Driver
+    username: first_test_user
+    password: 1234
+  security:
+    oauth2:
+      client:
+        registration:
+          # This ID must match the Client ID you created in Keycloak
+          keycloak-client:
+            client-id: first-backend
+            # This must be the client secret from Keycloak.
+            # For a "public" client, you might not have one, so you can omit this.
+            client-secret: KrkUEGGw6DEsmXFTuXTVOuoh9058W8hm
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+            scope: openid, profile, email
+        provider:
+          # This ID must match the registration ID above
+          keycloak-client:
+            issuer-uri: http://localhost:8081/realms/First
+            user-name-attribute: preferred_username
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8081/realms/First
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG
+server:
+  port: 8080
+  
